@@ -1,0 +1,6 @@
+.user-info,
+.error-info,
+.loading-info {
+  padding: 5px;
+  font-size: 1.5rem;
+}
