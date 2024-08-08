@@ -45,3 +45,15 @@ input {
 button[type="submit"] {
   width: 100%;
 }
+
+.user-info,
+.error-info,
+.loading-info  {
+  padding: 5px;
+  font-size: 1.5rem;
+}
+
+.error-info,
+.loading-info {
+  color: #fff;
+}
