@@ -7,20 +7,13 @@ function App() {
   const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes')) || []);
   const inputRef = useRef(null);
   const [user, setUser] = useState(null);
-  const [messageError, setMessageError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users/1')
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          setMessageError("Something went wrong")
-        }
-      }
-      )
+      .then((response) => response.json())
       .then((user) => setUser(user))
-      .catch(() => setMessageError("Something went wrong"));
+      .catch(() => setError("Something went wrong"));
   }, []);
 
   useEffect(() => {
@@ -30,7 +23,7 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
     if (inputRef.current.value !== '') {
-      setNotes([...notes, inputRef.current.value]);
+      setNotes([ inputRef.current.value, ...notes]);
       inputRef.current.value = '';
     }
   }
@@ -40,9 +33,9 @@ function App() {
     setNotes([...notes]);
   }
 
-  if (messageError) {
+  if (error) {
     return (
-      <p className="error-info">Error: {messageError} </p>
+      <p className="error-info">Error: {error} </p>
     );
   }
 
@@ -55,8 +48,8 @@ function App() {
   return (
     <div className="app">
       <p className="user-info">UserName: <b>{user.name}</b></p>
+      <h1>Your notesList</h1>
       <form onSubmit={handleSubmit}>
-        <h2>Your notesList</h2>
         <input
           type="text"
           name="userNote"
@@ -66,7 +59,7 @@ function App() {
         <button type="submit">Add</button>
       </form>
       <NoteList>
-        {notes.length === 0 ? <p className="notes-wrap">Нотаток немає</p> :
+        {notes.length === 0 ? <p className="notes-wrap">There are no notes</p> :
           notes.map((note, index) => <NoteItem note={note} key={index} onDelete={() => handleDelete(index)} />)}
       </NoteList>
     </div>

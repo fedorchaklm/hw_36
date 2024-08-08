@@ -1,5 +1,5 @@
 .note-list {
-  color: #fff;
+  color: var(--main-color);
   list-style: none;
 }
 

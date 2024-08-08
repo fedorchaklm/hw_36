@@ -55,5 +55,5 @@ button[type="submit"] {
 
 .error-info,
 .loading-info {
-  color: #fff;
+  color: var(--main-color);
 }

@@ -6,6 +6,7 @@
   --bg-color: #000;
   --main-color: #fff;
   --secondary-color: #eae8e8;
+  --ternary-color: #5b577e;
 }
 
 body {
@@ -26,5 +27,5 @@ button {
 }
 
 button:hover {
-  background-color: #5b577e;
+  background-color: var(--ternary-color);
 }
